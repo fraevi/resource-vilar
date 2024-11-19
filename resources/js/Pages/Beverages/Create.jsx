@@ -23,16 +23,14 @@ const CreateBeverage = ({ resourceName }) => {
     const { auth } = usePage().props;
     const [open, setOpen] = useState(false);
 
-    // Initialize form data with useForm
     const { data, setData, post, processing, reset, errors } = useForm({
         bev_name: "",
         bev_category: "",
         bev_description: "",
         bev_price: "",
-        created_by: auth.user.id, // Automatically set the creator based on the logged-in user
+        created_by: auth.user.id,
     });
 
-    // Beverage categories for the Select dropdown
     const beverageCategories = [
         { value: "Coffee", label: "Coffee" },
         { value: "Tea", label: "Tea" },
@@ -41,49 +39,46 @@ const CreateBeverage = ({ resourceName }) => {
         { value: "Soda", label: "Soda" },
     ];
 
-    // Custom styles for dark mode
-    const customStyles = {
+    const darkMode = {
         control: (provided) => ({
             ...provided,
-            backgroundColor: "#111827", // Dark background
-            borderColor: "#2D3748", // Dark border
-            color: "#E2E8F0", // Light text
+            backgroundColor: "#111827",
+            borderColor: "#2D3748",
+            color: "#E2E8F0",
             boxShadow: "none",
             '&:hover': {
-                borderColor: "#A0AEC0", // Lighter border on hover
+                borderColor: "#A0AEC0",
             },
         }),
         menu: (provided) => ({
             ...provided,
-            backgroundColor: "#111827", // Dark background for the dropdown
-            color: "#E2E8F0", // Light text for options
+            backgroundColor: "#111827",
+            color: "#E2E8F0",
         }),
         option: (provided, state) => ({
             ...provided,
-            backgroundColor: state.isSelected ? "#4A5568" : state.isFocused ? "#2D3748" : "transparent", // Dark focused/selected
-            color: state.isSelected ? "#E2E8F0" : "#A0AEC0", // Light text
+            backgroundColor: state.isSelected ? "#4A5568" : state.isFocused ? "#2D3748" : "transparent",
+            color: state.isSelected ? "#E2E8F0" : "#A0AEC0",
             padding: "10px",
             cursor: "pointer",
         }),
         singleValue: (provided) => ({
             ...provided,
-            color: "#E2E8F0", // Light text for selected value
+            color: "#E2E8F0",
         }),
         placeholder: (provided) => ({
             ...provided,
-            color: "#A0AEC0", // Light grey placeholder
+            color: "#A0AEC0",
         }),
     };
 
-    // Handle form submission
     const submit = (e) => {
         e.preventDefault();
 
-        // Posting data to the store route
         post(route("beverages.store"), {
             onSuccess: () => {
-                reset(); // Reset form after success
-                setOpen(false); // Close the dialog
+                reset();
+                setOpen(false);
             },
         });
     };
@@ -107,7 +102,6 @@ const CreateBeverage = ({ resourceName }) => {
                     <Separator className="h-[1px] my-4 bg-slate-500" />
 
                     <div className="grid gap-4 mb-7 pt-3">
-                        {/* Beverage Name */}
                         <div>
                             <LabelEx htmlFor="bev_name" required>
                                 Name
@@ -123,7 +117,6 @@ const CreateBeverage = ({ resourceName }) => {
                             <InputError message={errors.bev_name} className="mt-2" />
                         </div>
 
-                        {/* Beverage Category (Updated to use react-select) */}
                         <div>
                             <LabelEx htmlFor="bev_category" required>
                                 Category
@@ -134,12 +127,11 @@ const CreateBeverage = ({ resourceName }) => {
                                 onChange={(selectedOption) =>
                                     setData("bev_category", selectedOption ? selectedOption.value : "")
                                 }
-                                styles={customStyles} // Apply the custom styles here
+                                styles={darkMode}
                             />
                             <InputError message={errors.bev_category} className="mt-2" />
                         </div>
 
-                        {/* Beverage Description */}
                         <div>
                             <LabelEx htmlFor="bev_description" required>
                                 Description
@@ -155,7 +147,6 @@ const CreateBeverage = ({ resourceName }) => {
                             <InputError message={errors.bev_description} className="mt-2" />
                         </div>
 
-                        {/* Beverage Price */}
                         <div>
                             <LabelEx htmlFor="bev_price" required>
                                 Price

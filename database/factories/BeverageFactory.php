@@ -17,7 +17,10 @@ class BeverageFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'bev_name' => fake()->name(),
+            'bev_description' => fake()->text(),
+            'region_id' => 1,
+            'created_by' => 1,
         ];
     }
 }

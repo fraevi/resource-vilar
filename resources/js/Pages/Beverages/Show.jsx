@@ -3,14 +3,12 @@ import { Button } from "@/shadcn/ui/button";
 import { Label } from "@/shadcn/ui/label";
 
 const Show = ({ model, onDialogConfig }) => {
-    // Ensure bev_price is a valid number before calling .toFixed(2)
     const price = model.bev_price ? Number(model.bev_price).toFixed(2) : "0.00";
 
     return (
         <>
             <div className="flex space-x-10 mb-7 pt-3 w-full">
                 <div className="space-y-6 w-2/3">
-                    {/* Beverage Name */}
                     <div className="grid w-full max-w-sm gap-1.5">
                         <Label className="dark:text-slate-300">Name</Label>
 
@@ -19,7 +17,6 @@ const Show = ({ model, onDialogConfig }) => {
                         </div>
                     </div>
 
-                    {/* Beverage Category */}
                     <div className="grid w-full max-w-sm gap-1.5">
                         <Label className="dark:text-slate-300">Category</Label>
 
@@ -28,7 +25,6 @@ const Show = ({ model, onDialogConfig }) => {
                         </div>
                     </div>
 
-                    {/* Beverage Description */}
                     <div className="grid w-full max-w-sm gap-1.5">
                         <Label className="dark:text-slate-300">Description</Label>
 
@@ -37,7 +33,6 @@ const Show = ({ model, onDialogConfig }) => {
                         </div>
                     </div>
 
-                    {/* Beverage Price */}
                     <div className="grid w-full max-w-sm gap-1.5">
                         <Label className="dark:text-slate-300">Price</Label>
 
@@ -48,16 +43,14 @@ const Show = ({ model, onDialogConfig }) => {
                 </div>
 
                 <div className="space-y-8 w-1/3">
-                    {/* Date Created */}
                     <div className="grid w-full max-w-sm gap-1.5">
-                        <Label className="dark:text-slate-300">Date Created</Label>
+                        <Label className="dark:text-slate-300">Created on</Label>
 
                         <div className="text-lg font-semibold">
-                            {dayjs(model.created_at).format("MMMM D, YYYY")}
+                            {dayjs(model.created_at).format("MMMM D, YYYY [at] h:mm A")}
                         </div>
                     </div>
 
-                    {/* Created By */}
                     <div className="grid w-full max-w-sm gap-1.5">
                         <Label className="dark:text-slate-300">Created By</Label>
 
@@ -66,12 +59,11 @@ const Show = ({ model, onDialogConfig }) => {
                         </div>
                     </div>
 
-                    {/* Date Updated */}
                     <div className="grid w-full max-w-sm gap-1.5">
-                        <Label className="dark:text-slate-300">Date Updated</Label>
+                        <Label className="dark:text-slate-300">Updated on</Label>
 
                         <div className="text-lg font-semibold">
-                            {dayjs(model.updated_at).format("MMMM D, YYYY")}
+                            {dayjs(model.updated_at).format("MMMM D, YYYY [at] h:mm A")}
                         </div>
                     </div>
                 </div>

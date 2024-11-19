@@ -1,8 +1,3 @@
-/**
- * teachasgreywolf
- * May 17, 2024
- */
-
 import InputError from "@/Components/InputError";
 import LabelEx from "@/Components/LabelEx";
 import { Button } from "@/shadcn/ui/button";
@@ -21,7 +16,6 @@ const Update = ({ model, onDialogConfig, params }) => {
         created_by: auth.user.id,
     });
 
-    // Debugging: Log model.id to ensure it's available
     console.log("Beverage ID:", model);
 
     const beverageCategories = [
@@ -32,37 +26,36 @@ const Update = ({ model, onDialogConfig, params }) => {
         { value: "Soda", label: "Soda" },
     ];
 
-    // Custom styles for dark mode
-    const customStyles = {
+    const darkMode = {
         control: (provided) => ({
             ...provided,
-            backgroundColor: "#2D3748", // Dark background
-            borderColor: "#4A5568", // Dark border
-            color: "#E2E8F0", // Light text
+            backgroundColor: "#2D3748",
+            borderColor: "#4A5568",
+            color: "#E2E8F0",
             boxShadow: "none",
             '&:hover': {
-                borderColor: "#A0AEC0", // Lighter border on hover
+                borderColor: "#A0AEC0",
             },
         }),
         menu: (provided) => ({
             ...provided,
-            backgroundColor: "#2D3748", // Dark background for the dropdown
-            color: "#E2E8F0", // Light text for options
+            backgroundColor: "#2D3748",
+            color: "#E2E8F0",
         }),
         option: (provided, state) => ({
             ...provided,
-            backgroundColor: state.isSelected ? "#4A5568" : state.isFocused ? "#2D3748" : "transparent", // Dark focused/selected
-            color: state.isSelected ? "#E2E8F0" : "#A0AEC0", // Light text
+            backgroundColor: state.isSelected ? "#4A5568" : state.isFocused ? "#2D3748" : "transparent",
+            color: state.isSelected ? "#E2E8F0" : "#A0AEC0",
             padding: "10px",
             cursor: "pointer",
         }),
         singleValue: (provided) => ({
             ...provided,
-            color: "#E2E8F0", // Light text for selected value
+            color: "#E2E8F0",
         }),
         placeholder: (provided) => ({
             ...provided,
-            color: "#A0AEC0", // Light grey placeholder
+            color: "#A0AEC0",
         }),
     };
 
@@ -70,16 +63,13 @@ const Update = ({ model, onDialogConfig, params }) => {
     const submit = (e) => {
         e.preventDefault();
 
-        // Debugging: Check the correct field for the ID
         console.log("Submitting update for beverage with bev_id:", model.bev_id);
 
-        // Ensure that the beverage bev_id is correctly passed to the route
         if (!model.bev_id) {
             console.error("Beverage bev_id is missing!");
-            return;  // Exit if model.bev_id is not available
+            return;
         }
 
-        // Use the correct field for bev_id and pass it as 'beverage' in the route
         patch(route("beverages.update", { beverage: model.bev_id }), {
             onSuccess: () => {
                 reset();
@@ -118,7 +108,7 @@ const Update = ({ model, onDialogConfig, params }) => {
                         options={beverageCategories}
                         value={beverageCategories.find(option => option.value === data.bev_category)}
                         onChange={(selectedOption) => setData("bev_category", selectedOption.value)}
-                        styles={customStyles}
+                        styles={darkMode}
                     />
                     <InputError message={errors.bev_category} className="mt-2" />
                 </div>
@@ -154,7 +144,6 @@ const Update = ({ model, onDialogConfig, params }) => {
                     </div>
                 </div>
 
-                {/* Buttons */}
                 <div className="flex justify-end space-x-3">
                     {processing ? (
                         <Button disabled className="rounded-full w-40">

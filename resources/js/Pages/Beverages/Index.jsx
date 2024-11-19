@@ -1,8 +1,3 @@
-/**
- * teachasgreywolf
- * May 17, 2024
- */
-
 import PaginationEx from "@/Components/PaginationEx";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import SearchInput from "@/Components/SearchInput";
@@ -194,7 +189,7 @@ export default function Index({ auth, model, queryParams = null }) {
                                             >
                                                 {/* prettier-ignore */}
                                                 <div className="flex items-center gap-1 cursor-pointer">
-                                                    Date Created
+                                                    Created on
 
                                                     {queryParams.sort_field === "created_at"
                                                         ? (queryParams.sort_direction === "asc"
@@ -277,11 +272,11 @@ export default function Index({ auth, model, queryParams = null }) {
                                                             <div
                                                                 className="text-[7px]"
                                                                 onClick={() => {
-                                                                    console.log("Delete clicked for item:", item);  // Debugging: Log the item being deleted
+                                                                    console.log("Delete clicked for item:", item);
                                                                     setDialogConfig({
                                                                         open: true,
-                                                                        process: "delete",  // Set process to "delete" instead of "update"
-                                                                        data: item,         // Pass the item to the dialog for deletion
+                                                                        process: "delete",
+                                                                        data: item,
                                                                     });
                                                                 }}
                                                             >

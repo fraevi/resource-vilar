@@ -1,8 +1,3 @@
-/**
- * teachasgreywolf
- * May 17, 2024
- */
-
 import { Button } from "@/shadcn/ui/button";
 import { useForm } from "@inertiajs/react";
 import { Loader2 } from "lucide-react";
@@ -10,9 +5,7 @@ import { Loader2 } from "lucide-react";
 const Delete = ({ model, onDialogConfig, params }) => {
     const { delete: deleteRequest, processing } = useForm();
 
-    // Function to handle actual deletion
     const handleDelete = () => {
-        // Proceed with deletion
         deleteRequest(route("beverages.destroy", { beverage: model.bev_id, ...params }), {
             onSuccess: () => {
                 onDialogConfig({
@@ -26,12 +19,10 @@ const Delete = ({ model, onDialogConfig, params }) => {
 
     return (
         <>
-            {/* Main container with delete button */}
             <div className="mb-4">
-                <p className="text-lg font-semibold">Warning: Deleting this drink cannot be undone.</p>
+                <p className="text-lg font-semibold">Warning: This action cannot be undone.</p>
             </div>
 
-            {/* Main delete button */}
             <div className="flex justify-end space-x-3">
                 {processing ? (
                     <Button disabled className="rounded-full w-40">
@@ -40,14 +31,13 @@ const Delete = ({ model, onDialogConfig, params }) => {
                     </Button>
                 ) : (
                     <Button
-                        onClick={handleDelete}  // Directly handle deletion
+                        onClick={handleDelete}
                         className="bg-red-600 hover:bg-red-500 rounded-full w-40"
                     >
                         Delete
                     </Button>
                 )}
 
-                {/* Close button */}
                 <Button
                     variant="secondary"
                     onClick={() =>

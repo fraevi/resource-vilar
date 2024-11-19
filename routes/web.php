@@ -32,11 +32,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/region', [AddResourceController::class, 'addRegion'])->name('add.region');
     Route::post('/province', [AddResourceController::class, 'addProvince'])->name('add.province');
 
-    // Resource routes for Regions, Provinces, and Beverages
     Route::resource('regions', RegionController::class);
     Route::resource('provinces', ProvinceController::class);
-
-    // Beverage Routes
     Route::resource('beverages', BeverageController::class);
 });
 

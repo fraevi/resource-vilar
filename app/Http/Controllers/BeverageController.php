@@ -46,7 +46,7 @@ class BeverageController extends Controller
     {
         Beverage::create($request->validated());
 
-        session()->flash('message', 'Successfully created a new drink');
+        session()->flash('message', 'Successfully created a new beverage');
 
         return redirect(route('beverages.index'));
     }
@@ -78,15 +78,12 @@ class BeverageController extends Controller
      */
     public function update(Request $request, $bev_id)
 {
-    // Find the Beverage by bev_id
     $beverage = Beverage::find($bev_id);
 
-    // Check if the Beverage exists
     if (!$beverage) {
-        return response()->json(['error' => 'Drink not found'], 404);
+        return response()->json(['error' => 'beverage not found'], 404);
     }
 
-    // Update the Beverage with new data
     $beverage->update([
         'bev_name' => $request->bev_name,
         'bev_category' => $request->bev_category,
@@ -94,10 +91,8 @@ class BeverageController extends Controller
         'bev_price' => $request->bev_price,
     ]);
 
-    // Flash success message to the session
-    session()->flash('message', 'Successfully updated the drink');
+    session()->flash('message', 'Successfully updated the beverage');
 
-    // Redirect or return a response
     return redirect(route('beverages.index'));
 }
 
@@ -108,9 +103,7 @@ class BeverageController extends Controller
     public function destroy(Beverage $beverage)
     {
         $beverage->delete();
-
-        session()->flash('message', 'Successfully deleted the drink');
-
+        session()->flash('message', 'Successfully deleted the beverage');
         return redirect(route('beverages.index'));
     }
 }

@@ -29,6 +29,6 @@ class AddResourceController extends Controller
     {
         Beverage::create($request->validated());
 
-        session()->flash('message', 'Succcessfuly created a new drink');
+        session()->flash('message', 'Succcessfuly created a new beverage');
     }
 }
